@@ -21,12 +21,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 public class AssignmentBase {
 		
-		
-
-
-		
-		
-			
 			protected WebDriver driver;
 			protected WebElement searchbox;
 			protected WebElement searchbutton;
@@ -34,7 +28,7 @@ public class AssignmentBase {
 			
 			@BeforeTest
 			protected void openBrowser() {
-			browser = "Chrome";
+			browser = "Firefox";
 			System.setProperty("webdriver.chrome.driver", "C:\\\\Tools\\\\Selenium\\\\chromedriver.exe"); //Windows OS
 			//The following path is valid for MAC and Linux OS
 			//System.setProperty("webdriver.chrome.driver", "C:\\\\\\\\Tools\\\\\\\\Selenium\\\\\\\\chromedriver.exe");
@@ -57,42 +51,35 @@ public class AssignmentBase {
 			
 			@AfterTest
 			protected void tearDown() {
+				System.out.println("Automation test Completed----------------------------------");
 				driver.quit();
 			}
-
-//			@BeforeMethod
-//			protected void resetBrowser() {
-//				driver.get("https://www.flipkart.com");
-//				 WebElement parent= driver.findElement(By.xpath("//button[contains(text(),'✕')]"));
-//				 parent.click();
-//				 String searchstring = "fitbit";
-//				   WebElement searchbox= driver.findElement(By.name("q"));
-//				   searchbox.sendKeys(searchstring);
-////				searchbutton = driver.findElement(By.name("btnK"));
-//				 WebElement search= driver.findElement(By.xpath("//button[@class='L0Z3Pu']"));
-//	        	 search.click();
-//			}
+		
 			void screenShot() throws IOException {
 				File f;
 				f=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(f,new File("screenshot/product.jpg"));
+				FileUtils.copyFile(f,new File("screenshotClearTrip/resultPage.jpg"));
 				
 			}
-//			protected void waitForSuggestionsToLoad(String searchstring) {
-//				WebDriverWait myWait = new WebDriverWait(driver, 5);
-//				myWait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//li[@data-view-type='1']//div[@role='option']"), searchstring));
-//			}
-//			
-//			protected void waitForTextToBePresentInElement(By e, String text) {
-//				WebDriverWait myWait = new WebDriverWait(driver, 5);
-//				myWait.until(ExpectedConditions.textToBePresentInElementLocated(e, text));
-//				
-//			}
-//			
-//			protected void waitForTitleToContain(String searchstring) {
-//				WebDriverWait myWait = new WebDriverWait(driver, 5);
-//				myWait.until(ExpectedConditions.titleContains(searchstring));
-//			}
+			void screenShot2() throws IOException {
+				File f;
+				f=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+				FileUtils.copyFile(f,new File("screenshotClearTrip/nonstopFlights.jpg"));
+				
+			}
+	
+			protected void waitForTextToBePresentInElement(By e, String text) {
+				WebDriverWait myWait = new WebDriverWait(driver, 20);
+				myWait.until(ExpectedConditions.textToBePresentInElementLocated(e, text));
+				
+				
+			}
+
+			
+			protected void waitForTitleToContain(String searchstring) {
+				WebDriverWait myWait = new WebDriverWait(driver, 30);
+				myWait.until(ExpectedConditions.titleContains(searchstring));
+			}
 			
 			
 			
